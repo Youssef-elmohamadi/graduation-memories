@@ -1,0 +1,1264 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   FONT THEME TOKENS
+───────────────────────────────────────────── */
+@theme {
+  --font-amiri: var(--font-amiri), serif;
+  --font-tajawal: var(--font-tajawal), sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Fira Mono', monospace;
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT MODE VARIABLES  (default)
+───────────────────────────────────────────── */
+:root {
+  --bg:          #F5F2EB;
+  --fg:          #2A2520;
+  --fg-muted:    #7A7268;
+  --fg-faint:    #B5AFA8;
+  --accent:      #9B7A3F;
+  --accent-soft: rgba(155, 122, 63, 0.12);
+  --border:      rgba(42, 37, 32, 0.25);
+  --border-soft: rgba(42, 37, 32, 0.15);
+  --watermark:   rgba(80, 62, 20, 0.85);
+  --card-bg:     rgba(255, 255, 255, 0.65);
+  --card-border: rgba(42, 37, 32, 0.20);
+  --bg-fade-95:  rgba(245, 242, 235, 0.90);
+  --bg-fade-50:  rgba(245, 242, 235, 0.40);
+
+  /* Card surface colors — used in write card, book, and modals */
+  --card-surface:       rgba(255, 255, 255, 1);
+  --card-surface-end:   rgba(252, 250, 245, 1);
+  --card-text:          #1A1612;
+  --card-text-muted:    rgba(26, 22, 18, 0.80);
+  --card-text-faint:    rgba(42, 37, 32, 0.50);
+  --card-accent-border: rgba(155, 122, 63, 0.25);
+  --card-accent-glow:   rgba(155, 122, 63, 0.08);
+  --card-input-bg:      rgba(42, 37, 32, 0.04);
+  --card-input-border:  rgba(155, 122, 63, 0.18);
+  --card-input-text:    #2A2520;
+  --card-shimmer:       rgba(155, 122, 63, 0.35);
+  --card-ruled-line:    rgba(155, 122, 63, 0.15);
+  --backdrop-dim:       rgba(245, 242, 235, 0.45);
+  --modal-overlay:      rgba(42, 37, 32, 0.45);
+
+  /* Book Navigation */
+  --book-nav-color:       rgba(120, 90, 40, 1);
+  --book-nav-border:      rgba(155, 122, 63, 0.5);
+  --book-nav-bg:          rgba(155, 122, 63, 0.12);
+  --book-nav-hover-color: rgba(90, 65, 25, 1);
+  --book-nav-hover-border:rgba(155, 122, 63, 0.8);
+  --book-nav-hover-bg:    rgba(155, 122, 63, 0.25);
+  --book-dot:             rgba(155, 122, 63, 0.45);
+  --book-dot-hover:       rgba(155, 122, 63, 0.70);
+  --book-dot-active:      rgba(120, 90, 40, 1);
+  --book-dot-shadow:      rgba(155, 122, 63, 0.60);
+}
+
+/* ─────────────────────────────────────────────
+   DARK MODE VARIABLES
+───────────────────────────────────────────── */
+.dark {
+  --bg:          #090909;
+  --fg:          #E8E2D9;
+  --fg-muted:    #7A7570;
+  --fg-faint:    #3D3A36;
+  --accent:      #C9A55A;
+  --accent-soft: rgba(201, 165, 90, 0.10);
+  --border:      rgba(232, 226, 217, 0.10);
+  --border-soft: rgba(232, 226, 217, 0.04);
+  --watermark:   #c8a94a85;
+  --card-bg:     rgba(8, 8, 8, 0.28);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --bg-fade-95:  rgba(9, 9, 9, 0.98);
+  --bg-fade-50:  rgba(9, 9, 9, 0.65);
+
+  /* Card surface colors — dark mode */
+  --card-surface:       rgba(14, 13, 11, 0.97);
+  --card-surface-end:   rgba(10, 10, 9, 0.94);
+  --card-text:          #E8E2D9;
+  --card-text-muted:    rgba(232, 226, 217, 0.40);
+  --card-text-faint:    rgba(232, 226, 217, 0.20);
+  --card-accent-border: rgba(201, 165, 90, 0.20);
+  --card-accent-glow:   rgba(201, 165, 90, 0.06);
+  --card-input-bg:      rgba(255, 255, 255, 0.03);
+  --card-input-border:  rgba(201, 165, 90, 0.14);
+  --card-input-text:    #E8E2D9;
+  --card-shimmer:       rgba(201, 165, 90, 0.50);
+  --card-ruled-line:    rgba(201, 165, 90, 0.08);
+  --backdrop-dim:       rgba(6, 6, 6, 0.72);
+  --modal-overlay:      rgba(0, 0, 0, 0.80);
+
+  /* Book Navigation */
+  --book-nav-color:       rgba(201, 165, 90, 0.6);
+  --book-nav-border:      rgba(201, 165, 90, 0.15);
+  --book-nav-bg:          rgba(201, 165, 90, 0.04);
+  --book-nav-hover-color: rgba(201, 165, 90, 0.9);
+  --book-nav-hover-border:rgba(201, 165, 90, 0.35);
+  --book-nav-hover-bg:    rgba(201, 165, 90, 0.08);
+  --book-dot:             rgba(201, 165, 90, 0.15);
+  --book-dot-hover:       rgba(201, 165, 90, 0.35);
+  --book-dot-active:      rgba(201, 165, 90, 0.75);
+  --book-dot-shadow:      rgba(201, 165, 90, 0.30);
+}
+
+/* ─────────────────────────────────────────────
+   GLOBAL BASE — 700ms smooth theme transitions
+───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-tajawal), sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  transition: background-color 700ms ease, color 700ms ease;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Apply the transition to every element */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, opacity;
+  transition-duration: 700ms;
+  transition-timing-function: ease;
+}
+
+/* Exceptions: keep animations, transforms instant */
+[data-motion],
+[data-framer],
+.no-transition,
+.no-transition * {
+  transition: none !important;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY HELPERS
+───────────────────────────────────────────── */
+.font-amiri  { font-family: var(--font-amiri), serif; }
+.font-mono   { font-family: var(--font-mono); }
+
+/* ─────────────────────────────────────────────
+   BACKDROP WATERMARK TEXT
+───────────────────────────────────────────── */
+.backdrop-layer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  overflow: hidden;
+  padding: 5.5rem clamp(1rem, 4vw, 4rem) 2rem clamp(1rem, 4vw, 4rem);
+  direction: rtl;
+}
+
+.backdrop-text {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(0.9rem, 2.2vw, 1.4rem);
+  line-height: 2.3;
+  letter-spacing: 0.02em;
+  text-align: justify;
+  color: var(--watermark);
+  /* columns prevents any overflow scrollbar */
+  columns: auto;
+  column-gap: 3rem;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* ─────────────────────────────────────────────
+   GLASS CARD CONTAINER
+───────────────────────────────────────────── */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.20), 0 0 0 0.5px rgba(255,255,255,0.15) inset;
+  transition: background 700ms ease, border-color 700ms ease, box-shadow 700ms ease;
+}
+
+/* ─────────────────────────────────────────────
+   BOTTOM FADE OVERLAY
+───────────────────────────────────────────── */
+.bottom-fade-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Covers 38% of viewport — enough to swallow backdrop text into velvet black */
+  height: 38vh;
+  pointer-events: none;
+  z-index: 1; /* Above backdrop text (z-0) but below page content (z-10) */
+  /* Four-stop gradient: transparent → semi-dark → near-opaque → solid bg */
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--bg-fade-50) 35%,
+    var(--bg-fade-95) 70%,
+    var(--bg) 100%
+  );
+  transition: background 700ms ease;
+}
+
+/* ─────────────────────────────────────────────
+   GALLERY PORTRAIT FRAME
+───────────────────────────────────────────── */
+.gallery-frame {
+  position: relative;
+  display: inline-block;
+}
+
+/* Outer border frame — clipped so it never leaks outside its column */
+.gallery-frame::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 1;
+  transition: border-color 700ms ease;
+}
+
+/* Inner shadow inset */
+.gallery-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Inside the modal, clip the -8px bleed to prevent horizontal overflow */
+.modal-portrait-col .gallery-frame::before {
+  inset: -4px;
+}
+
+/* ─────────────────────────────────────────────
+   BARE INPUT (bottom border only)
+───────────────────────────────────────────── */
+.input-bare {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  outline: none;
+  width: 100%;
+  padding: 0.5rem 0;
+  color: var(--fg);
+  font-family: var(--font-amiri), serif;
+  font-size: 1.1rem;
+  transition: border-color 700ms ease;
+}
+
+.input-bare::placeholder {
+  color: var(--fg-faint);
+}
+
+.input-bare:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* ─────────────────────────────────────────────
+   CORNER ACCENTS (vintage book corners)
+───────────────────────────────────────────── */
+.corner-accent {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--accent);
+  border-style: solid;
+  opacity: 0.4;
+  transition: opacity 700ms ease;
+}
+.corner-tl { top: 0; right: 0; border-width: 1px 0 0 1px; }
+.corner-tr { top: 0; left: 0;  border-width: 1px 1px 0 0; }
+.corner-bl { bottom: 0; right: 0; border-width: 0 0 1px 1px; }
+.corner-br { bottom: 0; left: 0;  border-width: 0 1px 1px 0; }
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR HIDE UTILITY
+   Hides the scrollbar visually while keeping
+   touch/wheel scrolling fully functional.
+   Works across Chrome, Safari, and Firefox.
+───────────────────────────────────────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;   /* IE / Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;              /* Chrome / Safari / WebKit */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   WRITE PAGE — premium memory-book form experience
+═══════════════════════════════════════════════════════════════ */
+
+/* Full-screen page backdrop — dims the watermark text dramatically */
+.write-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--backdrop-dim);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Page root — full viewport, centers card */
+.write-page-root {
+  position: relative;
+  z-index: 10;              /* above write-backdrop (z-2) */
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(6rem, env(safe-area-inset-top)) 1.25rem 3rem;
+  overflow-x: hidden;
+}
+
+/* Subtle gold atmospheric glow above the card */
+.write-glow {
+  position: fixed;
+  top: -15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(700px, 100vw);
+  height: 45vh;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 165, 90, 0.10) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 3;
+  filter: blur(40px);
+}
+
+/* ── Card ──────────────────────────────────── */
+.write-card {
+  position: relative;
+  width: min(560px, 100%);
+  background: linear-gradient(
+    150deg,
+    var(--card-surface) 0%,
+    var(--card-surface-end) 100%
+  );
+  border: 1px solid var(--card-accent-border);
+  border-radius: 20px;
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.5rem, 6vw, 3rem);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.15),
+    0 0 0 0.5px var(--card-accent-glow) inset,
+    0 0 40px var(--card-accent-glow);
+  overflow: hidden;
+}
+
+.dark .write-card {
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.65),
+    0 0 0 0.5px rgba(201, 165, 90, 0.08) inset,
+    0 0 40px rgba(201, 165, 90, 0.06);
+}
+
+/* Gold shimmer border-top accent */
+.write-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--card-shimmer),
+    transparent
+  );
+}
+
+/* ── Vintage corner ornaments ── */
+.write-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  opacity: 0.45;
+}
+.write-corner-tl { top: 12px;    right: 12px;  transform: none; }
+.write-corner-tr { top: 12px;    left: 12px;   transform: scaleX(-1); }
+.write-corner-bl { bottom: 12px; right: 12px;  transform: scaleY(-1); }
+.write-corner-br { bottom: 12px; left: 12px;   transform: scale(-1); }
+
+/* ── Card header ── */
+.write-card-header {
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+
+.write-eyebrow {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(201, 165, 90, 0.55);
+  margin-bottom: 0.75rem;
+}
+
+.write-heading {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(1.75rem, 5vw, 2.4rem);
+  font-weight: 400;
+  color: var(--card-text);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.write-subheading {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  color: var(--card-text-muted);
+  line-height: 1.8;
+}
+
+/* ── Gold divider ── */
+.write-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 165, 90, 0.30),
+    transparent
+  );
+  margin: 1.5rem 0;
+}
+
+/* ── Form layout ── */
+.write-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Field group ── */
+.write-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.write-field-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.write-label {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(201, 165, 90, 0.70);
+  cursor: default;
+}
+
+.write-required {
+  color: rgba(201, 165, 90, 0.60);
+  margin-right: 0.2em;
+}
+
+.write-sublabel {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: rgba(232, 226, 217, 0.20);
+  text-transform: uppercase;
+}
+
+/* ── Textarea ── */
+.write-textarea-wrap {
+  position: relative;
+}
+
+.write-textarea,
+.write-input {
+  width: 100%;
+  background: var(--card-input-bg);
+  border: 1px solid var(--card-input-border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  color: var(--card-input-text);
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  line-height: 1.9;
+  outline: none;
+  resize: none;
+  transition: border-color 300ms ease, background 300ms ease, box-shadow 300ms ease;
+  -webkit-text-size-adjust: 100%;
+}
+
+.write-textarea:focus,
+.write-input:focus {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--card-accent-glow);
+}
+
+.write-textarea::placeholder,
+.write-input::placeholder {
+  color: var(--card-text-faint);
+}
+
+/* ── Character counter (inside textarea wrap) ── */
+.write-char-counter {
+  display: block;
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-align: left;
+  margin-top: 0.4rem;
+  transition: color 300ms ease;
+}
+
+/* ── Field-level inline error ── */
+.write-error {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: #e07070;
+}
+
+.write-error-dot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #e07070;
+  display: inline-block;
+}
+
+/* ── Server error banner ── */
+.write-server-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(224, 112, 112, 0.25);
+  background: rgba(224, 112, 112, 0.06);
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #e07070;
+}
+
+/* ── Actions row ── */
+.write-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 0.25rem;
+}
+
+/* Primary CTA */
+.write-primary-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0a0a09;
+  background: linear-gradient(135deg, #C9A55A 0%, #dfc07a 50%, #C9A55A 100%);
+  background-size: 200% 100%;
+  border: none;
+  cursor: pointer;
+  transition: background-position 400ms ease, opacity 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+  box-shadow: 0 4px 18px rgba(201, 165, 90, 0.30);
+  min-width: 9rem;
+}
+
+.write-primary-btn:not(:disabled):hover {
+  background-position: 100% 0;
+  box-shadow: 0 6px 24px rgba(201, 165, 90, 0.45);
+  transform: translateY(-1px);
+}
+
+.write-primary-btn:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.write-primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.write-btn-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Animated spinner dot-ring */
+.write-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid rgba(10, 10, 9, 0.30);
+  border-top-color: #0a0a09;
+  border-radius: 50%;
+  animation: write-spin 0.7s linear infinite;
+}
+
+@keyframes write-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Privacy note */
+.write-privacy-note {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232, 226, 217, 0.18);
+}
+
+/* ── Success state ── */
+.write-success-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.write-success-icon {
+  margin-bottom: 0.5rem;
+}
+
+.write-success-title {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(1.3rem, 4vw, 1.75rem);
+  color: var(--card-text);
+  line-height: 1.6;
+}
+
+.write-success-sub {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  color: var(--card-text-muted);
+  line-height: 1.8;
+}
+
+/* Secondary text button */
+.write-secondary-btn {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(201, 165, 90, 0.55);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 250ms ease;
+  padding: 0.25rem 0;
+}
+
+.write-secondary-btn:hover {
+  color: rgba(201, 165, 90, 0.90);
+}
+
+/* ── Responsive tweaks ── */
+@media (max-width: 400px) {
+  .write-card {
+    border-radius: 16px;
+  }
+
+  .write-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .write-primary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .write-privacy-note {
+    text-align: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BOOK / NOTEBOOK — my-memories page
+   Premium leather-bound memory book with page-flip animations
+═══════════════════════════════════════════════════════════════ */
+
+/* Backdrop dimmer */
+.book-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--backdrop-dim);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Page root */
+.book-page-root {
+  position: relative;
+  z-index: 10;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: max(5.5rem, env(safe-area-inset-top)) 1rem 2rem;
+  gap: 1.5rem;
+  overflow-x: hidden;
+}
+
+/* Ambient gold glow */
+.book-ambient-glow {
+  position: fixed;
+  top: -10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(800px, 120vw);
+  height: 50vh;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 165, 90, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+/* ── Book container ── */
+.book-container {
+  position: relative;
+  width: min(580px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Spine — left edge shadow (simulates book binding) */
+.book-spine {
+  position: absolute;
+  left: -2px;
+  top: 8px;
+  bottom: 8px;
+  width: 14px;
+  background: linear-gradient(
+    to right,
+    rgba(100, 80, 30, 0.35) 0%,
+    rgba(100, 80, 30, 0.08) 50%,
+    transparent 100%
+  );
+  border-radius: 4px 0 0 4px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ── Book body (the main card) ── */
+.book-body {
+  position: relative;
+  width: 100%;
+  min-height: min(680px, 72vh);
+  background: linear-gradient(
+    155deg,
+    var(--card-surface) 0%,
+    var(--card-surface-end) 40%,
+    var(--card-surface-end) 100%
+  );
+  border: 1px solid var(--card-accent-border);
+  border-radius: 4px 16px 16px 4px;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.18),
+    0 0 0 1px var(--card-accent-border) inset,
+    0 0 30px var(--card-accent-glow),
+    -6px 0 16px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 4;
+}
+
+.dark .book-body {
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 0.5px rgba(201, 165, 90, 0.06) inset,
+    0 0 60px rgba(201, 165, 90, 0.04),
+    -4px 0 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Shimmer top line */
+.book-shimmer-top {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--card-shimmer),
+    transparent
+  );
+}
+
+/* ── Corner ornaments ── */
+.book-ornament {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 6;
+}
+.book-ornament-tl { top: 10px;    right: 10px;  transform: none; }
+.book-ornament-tr { top: 10px;    left: 10px;   transform: scaleX(-1); }
+.book-ornament-bl { bottom: 10px; right: 10px;  transform: scaleY(-1); }
+.book-ornament-br { bottom: 10px; left: 10px;   transform: scale(-1); }
+
+/* ── Page content area ── */
+.book-page-content {
+  position: relative;
+  width: 100%;
+  min-height: min(580px, 60vh);
+  display: flex;
+  flex-direction: column;
+  transform-origin: left center;
+}
+
+/* ── Stacked pages effect ── */
+.book-stacked-page {
+  position: absolute;
+  border-radius: 4px 14px 14px 4px;
+  border: 1px solid var(--border-soft);
+  background: var(--card-surface-end);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.book-stacked-1 {
+  left: 3px;
+  right: -3px;
+  top: 3px;
+  bottom: -3px;
+}
+
+.book-stacked-2 {
+  left: 5px;
+  right: -5px;
+  top: 5px;
+  bottom: -5px;
+  opacity: 0.7;
+}
+
+.book-stacked-3 {
+  left: 7px;
+  right: -7px;
+  top: 7px;
+  bottom: -7px;
+  opacity: 0.4;
+}
+
+/* ═══ COVER PAGE ═══ */
+.book-cover-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.25rem;
+  padding: 2rem 1rem;
+  min-height: min(580px, 60vh);
+}
+
+/* Portrait on cover */
+.book-cover-portrait {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.book-portrait-glow {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(201, 165, 90, 0.15) 0%,
+    transparent 70%
+  );
+  filter: blur(25px);
+  pointer-events: none;
+}
+
+.book-cover-title {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--card-text);
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 20px var(--card-accent-glow);
+}
+
+.book-cover-subtitle {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  color: var(--card-text-muted);
+  line-height: 1.8;
+}
+
+/* Gold divider */
+.book-gold-divider {
+  width: 100%;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 165, 90, 0.40),
+    transparent
+  );
+  margin: 0.25rem 0;
+}
+
+.book-gold-divider-short {
+  max-width: 80px;
+}
+
+/* Open book button */
+.book-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.7rem 2rem;
+  border-radius: 10px;
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0a0a09;
+  background: linear-gradient(135deg, #C9A55A 0%, #dfc07a 50%, #C9A55A 100%);
+  background-size: 200% 100%;
+  border: none;
+  cursor: pointer;
+  transition: background-position 400ms ease, box-shadow 200ms ease, transform 150ms ease;
+  box-shadow: 0 4px 18px rgba(201, 165, 90, 0.3);
+}
+
+.book-open-btn:hover {
+  background-position: 100% 0;
+  box-shadow: 0 6px 24px rgba(201, 165, 90, 0.45);
+  transform: translateY(-1px);
+}
+
+.book-open-btn:active {
+  transform: translateY(0);
+}
+
+.book-open-btn-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ═══ MEMORY PAGE ═══ */
+.book-memory-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 0.5rem;
+  min-height: min(580px, 60vh);
+}
+
+/* Ruled lines */
+.book-ruled-lines {
+  position: absolute;
+  inset: 60px 20px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.book-ruled-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--card-ruled-line) 10%,
+    var(--card-ruled-line) 50%,
+    var(--card-ruled-line) 90%,
+    transparent 100%
+  );
+}
+
+/* Page header */
+.book-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(201, 165, 90, 0.12);
+}
+
+.book-sender-badge {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  color: rgba(201, 165, 90, 0.85);
+  font-weight: 700;
+}
+
+.book-date-label {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+}
+
+/* Message area */
+.book-message-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 0.5rem;
+}
+
+.book-message-text {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+  line-height: 2.4;
+  color: var(--card-text);
+  text-align: center;
+  max-width: 95%;
+  word-break: break-word;
+}
+
+/* Signature area */
+.book-signature-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+  padding-top: 0.5rem;
+}
+
+.book-signature-name {
+  font-family: var(--font-amiri), serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  color: rgba(201, 165, 90, 0.7);
+  font-style: italic;
+}
+
+/* Page number */
+.book-page-number {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--card-text-faint);
+  z-index: 1;
+}
+
+/* ── Navigation controls ── */
+.book-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 580px;
+  padding: 0.5rem 0;
+}
+
+.book-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--book-nav-border);
+  background: var(--book-nav-bg);
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--book-nav-color);
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.book-nav-btn:not(:disabled):hover {
+  border-color: var(--book-nav-hover-border);
+  background: var(--book-nav-hover-bg);
+  color: var(--book-nav-hover-color);
+}
+
+.book-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.book-nav-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Page indicator dots */
+.book-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 200px;
+}
+
+.book-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: var(--book-dot);
+  cursor: pointer;
+  transition: all 300ms ease;
+  padding: 0;
+}
+
+.book-dot:hover {
+  background: var(--book-dot-hover);
+  transform: scale(1.3);
+}
+
+.book-dot-active {
+  background: var(--book-dot-active);
+  transform: scale(1.3);
+  box-shadow: 0 0 8px var(--book-dot-shadow);
+}
+
+/* Logout */
+.book-logout-btn {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--card-text-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 300ms ease;
+  padding: 0.25rem 0.5rem;
+}
+
+.book-logout-btn:hover {
+  color: var(--card-text);
+}
+
+/* ── Book responsive ── */
+@media (max-width: 480px) {
+  .book-body {
+    min-height: min(550px, 65vh);
+    border-radius: 3px 12px 12px 3px;
+    padding: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .book-page-content {
+    min-height: min(450px, 55vh);
+  }
+
+  .book-cover-page,
+  .book-memory-page {
+    min-height: min(450px, 55vh);
+  }
+
+  .book-controls {
+    gap: 0.75rem;
+  }
+
+  .book-nav-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.58rem;
+  }
+
+  .book-stacked-1 { right: -2px; bottom: -2px; left: 2px; top: 2px; }
+  .book-stacked-2 { right: -4px; bottom: -4px; left: 4px; top: 4px; }
+  .book-stacked-3 { right: -6px; bottom: -6px; left: 6px; top: 6px; }
+}
