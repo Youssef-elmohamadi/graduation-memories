@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import type { SerializedMemory } from '@/app/actions/memoryActions';
 
 interface Props {
@@ -93,7 +93,7 @@ export default function MemoryViewer({ memories, onLogout }: Props) {
   };
 
   /* ── Page flip animation variants ── */
-  const pageVariants = {
+  const pageVariants: Variants = {
     enter: (dir: number) => ({
       rotateY: dir > 0 ? 90 : -90,
       opacity: 0,
